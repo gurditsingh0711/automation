@@ -1,12 +1,12 @@
 
 resource "azurerm_managed_disk" "data_disk" {
-  count         = 3
-  name          = "datadisk-${count.index}"
-  location      = var.location
-  resource_group_name = var.rg_name
-  storage_account_type = "Standard_LRS"
-  create_option = "Empty"
-  disk_size_gb  = 10
+  count                = var.vm_count
+  name                 = "datadisk-${count.index}"
+  location             = var.location
+  resource_group_name  = var.rg_name
+  storage_account_type = var.account_type
+  create_option        = "Empty"
+  disk_size_gb         = var.datadisk_size
 }
 
 

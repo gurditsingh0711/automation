@@ -1,77 +1,69 @@
 variable "tags" {
   type        = map(string)
-  description = "A mapping of tags to assign to the resource."
-  default = {
-    Project        = "Automation Project – Assignment 1"
-    Name           = "gurdit.singh"
-    ExpirationDate = "2023-06-30"
-    Environment    = "Lab"
-  }
 }
 
 
 variable "location" {
-  default = "eastus"
+  type = string
 }
 
 variable "rg_name" {
-  default = "N01478647-assignment1-RG"
+  type = string
 }
 
 variable "subnet_id" {
-
 }
 
 variable "vm_name" {
-  default = "vm-windows"
+  type = string
 }
 
 variable "vm_size" {
-  default = "Standard_B1s"
+  type = string
 }
 
 variable "admin_username" {
-  default = "adminuser"
+  type = string
 }
 
 variable "admin_password" {
-  default = "Gurditsingh@8647"
+  type = string
 }
 
 variable "os_disk_name" {
-  default = "osdisk-windows"
+  type = string
 }
 
 variable "os_type" {
-  default = "Windows"
+  type = string
 }
 
 variable "dns_label" {
-  default = "mywindowsvm"
+  type = string
 }
 
 variable "avail_set_name" {
-  default = "8647windows-avail-set"
+  type = string
 }
 
 variable "public_ip_dns_label" {
-  default = "public-ip-8647"
+  type = string
 }
 
 variable "antimalware_extension_name" {
-  default = "IaaSAntimalware"
+  type = string
 }
 
 variable "antimalware_extension_publisher" {
-  default = "Microsoft.Azure.Security"
+  type = string
 }
 
 variable "antimalware_extension_type" {
-  default = "IaaSAntimalware"
+  type = string
 }
 
 variable "antimalware_extension_version" {
-  default = "1.3"
+  type = string
 }
 
 variable "boot_diagnostics_storage_uri" {

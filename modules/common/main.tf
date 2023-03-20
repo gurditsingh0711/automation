@@ -1,28 +1,24 @@
 resource "azurerm_log_analytics_workspace" "la_workspace" {
-  name                = "la-workspace8647"
+  name                = var.la_workspace_name
   location            = var.location
   resource_group_name = var.rg_name
-  sku                 = "PerGB2018"
-  
-  tags = var.tags
+  sku                 = var.log_sku
+  tags 		    = var.tags
 }
 
 resource "azurerm_recovery_services_vault" "rs_vault" {
-  name                = "rs-vault8647"
+  name                = var.rs_vault_name
   location            = var.location
   resource_group_name = var.rg_name
-  sku = "Standard"
-  
+  sku                 = var.vault_sku
   tags                = var.tags
 }
 
-
 resource "azurerm_storage_account" "storage_account" {
-  name                     = "st8647"
+  name                     = var.st_name
   location                 = var.location
   resource_group_name      = var.rg_name
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  
-  tags = var.tags
+  account_tier             = var.st_tier
+  account_replication_type = var.st_replication_type
+  tags 			   = var.tags
 }

@@ -2,7 +2,7 @@ resource "azurerm_availability_set" "av_set" {
   name                = "av-set"
   resource_group_name = var.resource_group_name
   location            = var.location
-tags = var.tags
+  tags                = var.tags
 }
 
 resource "azurerm_public_ip" "public_ip" {
@@ -11,23 +11,22 @@ resource "azurerm_public_ip" "public_ip" {
   location            = var.location
   resource_group_name = var.resource_group_name
   allocation_method   = "Static"
-tags = var.tags
+  tags                = var.tags
 }
 
 
 resource "azurerm_network_interface" "nic" {
-  count               = var.vm_count
-  name                = "nic-${count.index + 1}"
-  location            = var.location
-  resource_group_name = var.resource_group_name
+  count                           = var.vm_count
+  name                            = "nic-${count.index + 1}"
+  location                        = var.location
+  resource_group_name             = var.resource_group_name
   ip_configuration {
     name                          = "nic-ip-config-${count.index + 1}"
     subnet_id 			    = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.public_ip[count.index].id
-
   }
-tags = var.tags
+tags                              = var.tags
 }
 
 

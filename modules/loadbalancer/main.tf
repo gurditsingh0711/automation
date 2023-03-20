@@ -11,8 +11,8 @@ resource "azurerm_lb" "lb" {
   resource_group_name = var.rg_name
 
   frontend_ip_configuration {
-    name                          = "PublicIPAddress"
-    public_ip_address_id          = azurerm_public_ip.lbpublicip.id
+    name                      = "PublicIPAddress"
+    public_ip_address_id      = azurerm_public_ip.lbpublicip.id
   }
 }
 
@@ -21,7 +21,6 @@ resource "azurerm_lb_backend_address_pool" "pool" {
   count               = 2
   name                = "pool-${count.index + 1}"
   loadbalancer_id     = azurerm_lb.lb.id
- # backend_ip_addresses = var.linux_vm_ids
 }
 
 resource "azurerm_lb_probe" "probe" {
@@ -36,7 +35,6 @@ resource "azurerm_lb_probe" "probe" {
 
 resource "azurerm_network_interface_backend_address_pool_association" "backend_pool_association" {
   count = length(var.linux_vm_ids)
-
   network_interface_id    = var.linux_vm_ids[count.index]
   ip_configuration_name   = "nic-ip-config-${count.index + 1}"
   backend_address_pool_id = azurerm_lb_backend_address_pool.pool[count.index].id

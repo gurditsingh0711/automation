@@ -1,54 +1,38 @@
-
 variable "tags" {
-  type        = map(string)
-  description = "A mapping of tags to assign to the resource."
-  default = {
-    Project        = "Automation Project – Assignment 1"
-    Name           = "gurdit.singh"
-    ExpirationDate = "2023-06-30"
-    Environment    = "Lab"
-  }
+  type    = map(string)
 }
-
 
 variable "resource_group_name" {
   type    = string
-  default = "N01478647-assignment1-RG"
 }
 
 variable "location" {
-	default = "eastus" 
+  type    = string 
 }
 
 
 variable "vnet_name" {
   type    = string
-  default = "8647vnet"
 }
 
 variable "subnet_name" {
   type    = string
-  default = "8647subnet"
 }
 
 variable "vm_size" {
   type    = string
-  default = "Standard_B1s"
 }
 
 variable "vm_count" {
   type    = number
-  default = 2
 }
 
 variable "dns_label_prefix" {
   type    = string
-  default = "8647"
 }
 
 variable "ssh_user" {
   type    = string
-  default = "centos"
 }
 
 variable "ssh_public_key_path" {

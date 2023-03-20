@@ -1,8 +1,8 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "N01478647-assignment1-RG"
-    storage_account_name = "tfstate8647"
-    container_name       = "tfstate"
-    key                  = "scx9LlBWgYYI6X0voblMljiD6xAw5Mpd+rRZiIqxbTIHHdyLUJRwxGwVsDFtFyyoyWUSMkaoW+6C+ASt1RLNVw=="
+    resource_group_name  = "tfstate-RG"
+    storage_account_name = "storageacc8647"
+    container_name       = "tfstate-container"
+    key                  = "79Os6Q55W9GKH9JFZ/TI9MAzfbzXxFEE0xu6Cpkpa9S5q6qy8bhLMdMGsSSQzKlWbMLOLSHaH9fh+AStBYrWQQ=="
   }
 }

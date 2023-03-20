@@ -1,27 +1,36 @@
 
-
 variable "db_name" {
-  description = "Name of the Azure DB for PostgreSQL instance"
+  type = string
 }
 
 variable "db_sku_name" {
-  description = "Name of the SKU to use for the Azure DB for PostgreSQL instance"
-  default     = "B_Gen5_1"
+  type = string
 }
 
 variable "db_storage_mb" {
-  description = "Amount of storage to allocate for the Azure DB for PostgreSQL instance (in MB)"
-  default     = 5120
+  type = number
 }
 
 variable "db_admin_username" {
-  description = "Username for the admin account of the Azure DB for PostgreSQL instance"
+  type = string
 }
 
 variable "db_admin_password" {
-  description = "Password for the admin account of the Azure DB for PostgreSQL instance"
+  type = string
 }
 
-variable "rg_name"{}
-variable "location"{}
-variable "prefix"{}
+variable "rg_name"{
+  type = string
+}
+
+variable "location"{
+  type = string
+}
+
+variable "prefix"{
+  type = string
+}
+
+variable "tags" {
+ type = map(string)
+}

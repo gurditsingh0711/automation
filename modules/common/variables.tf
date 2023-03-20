@@ -1,18 +1,39 @@
 variable "rg_name" {
-	default = "N01521239-assignment1-RG"
+	type = string
 }
 
 variable "location" {
-	default = "eastus"
+	type = string
 }
 
 variable "tags" {
   type = map(string)
-  description = "A mapping of tags to assign to the resource."
-  default = {
-    Project = "Automation Project – Assignment 1"
-    Name = "vinit.maken"
-    ExpirationDate = "2023-06-30"
-    Environment = "Lab"
-  }
+}
+
+variable "la_workspace_name" {
+	type = string
+}
+
+variable "log_sku" {
+	type = string
+}
+
+variable "rs_vault_name" {
+	type = string
+}
+
+variable "vault_sku" {
+	type = string
+}
+
+variable "st_name" {
+	type = string
+}
+
+variable "st_tier" {
+	type = string
+}
+
+variable "st_replication_type" {
+	type = string
 }

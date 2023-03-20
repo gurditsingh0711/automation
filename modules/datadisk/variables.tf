@@ -1,28 +1,23 @@
 variable "vm_count" {
-  description = "The number of virtual machines to attach the data disks to"
+  type = number
 }
 
 variable "location" {
-  description = "The location of the resource group"
+  type = string
 }
 
 variable "rg_name" {
-  description = "The name of the resource group"
+  type = string
 }
+
 variable "subnet_id" {
-  description = "The ID of the subnet where the resources will be provisioned."
+ 
 }
 
 variable "tags" {
-  type        = map(string)
-  description = "A mapping of tags to assign to the resource."
-  default = {
-    Project        = "Automation Project – Assignment 1"
-    Name           = "gurdit.singh"
-    ExpirationDate = "2023-06-30"
-    Environment    = "Lab"
-  }
+  type = map(string)
 }
+
 variable "linux_vm_ids" {
   type = list(string)
 }
@@ -31,4 +26,11 @@ variable "vmwindows_vm_id" {
   type = string
 }
 
+variable "account_type" {
+  type = string
+}
+
+variable "datadisk_size" {
+  type = number
+}
 

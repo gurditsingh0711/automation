@@ -8,14 +8,7 @@ resource "azurerm_postgresql_server" "database" {
   administrator_login_password = var.db_admin_password
   sku_name                     = var.db_sku_name
   storage_mb                   = var.db_storage_mb
-  ssl_enforcement_enabled = true
-
-
-  tags = {
-    Project         = "Automation Project – Assignment 1"
-    Name            = "gurdit.singh"
-    ExpirationDate  = "2023-06-30"
-    Environment     = "Lab"
-  }
+  ssl_enforcement_enabled      = true
+  tags                         = var.tags
 }
 

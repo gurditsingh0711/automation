@@ -5,7 +5,7 @@ module "rgroup" {
     Environment    = "Lab"
     ExpirationDate = "2023-06-30"
     Name           = "gurdit.singh"
-    Project        = "Automation Project – Assignment 1"
+    Project        = "Automation Project – Assignment 2"
   }
 }
 
@@ -22,7 +22,7 @@ module "network" {
     Environment    = "Lab"
     ExpirationDate = "2023-06-30"
     Name           = "gurdit.singh"
-    Project        = "Automation Project – Assignment 1"
+    Project        = "Automation Project – Assignment 2"
   }
   depends_on = [
   module.rgroup
@@ -45,7 +45,7 @@ module "common" {
     Environment    = "Lab"
     ExpirationDate = "2023-06-30"
     Name           = "gurdit.singh"
-    Project        = "Automation Project – Assignment 1"
+    Project        = "Automation Project – Assignment 2"
   }
   depends_on = [
   module.rgroup
@@ -69,7 +69,7 @@ module "vmlinux" {
     Environment    = "Lab"
     ExpirationDate = "2023-06-30"
     Name           = "gurdit.singh"
-    Project        = "Automation Project – Assignment 1"
+    Project        = "Automation Project – Assignment 2"
   }
   depends_on = [
   module.rgroup
@@ -99,7 +99,7 @@ module "vmwindows" {
     Environment    = "Lab"
     ExpirationDate = "2023-06-30"
     Name           = "gurdit.singh"
-    Project        = "Automation Project – Assignment 1"
+    Project        = "Automation Project – Assignment 2"
   }
   depends_on = [
   module.rgroup
@@ -120,7 +120,7 @@ module "datadisk" {
     Environment    = "Lab"
     ExpirationDate = "2023-06-30"
     Name           = "gurdit.singh"
-    Project        = "Automation Project – Assignment 1"
+    Project        = "Automation Project – Assignment 2"
   }
   depends_on = [
   module.rgroup
@@ -139,7 +139,7 @@ module "loadbalancer" {
     Environment    = "Lab"
     ExpirationDate = "2023-06-30"
     Name           = "gurdit.singh"
-    Project        = "Automation Project – Assignment 1"
+    Project        = "Automation Project – Assignment 2"
   }
   depends_on = [
   module.rgroup
@@ -161,11 +161,18 @@ module "database" {
     Environment    = "Lab"
     ExpirationDate = "2023-06-30"
     Name           = "gurdit.singh"
-    Project        = "Automation Project – Assignment 1"
+    Project        = "Automation Project – Assignment 2"
   }
   depends_on = [
   module.rgroup
   ]
 }
+
+resource "null_resource" "ansible" {
+  provisioner "local-exec" {
+	command = "wsl ansible-playbook -i /home/gurdit/automation/ansible/assignment2/hosts /home/gurdit/automation/ansible/assignment2/groupX-playbook.yaml "
+}	
+}
+
 
 

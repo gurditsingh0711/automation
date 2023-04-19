@@ -1,0 +1,9 @@
+---
+# Default values for datadisk role
+datadisk_device: "/dev/sdc"
+datadisk_part1_size: "4GB"
+datadisk_part1_fstype: "xfs"
+datadisk_part1_mount: "/part1"
+datadisk_part2_size: "9GB"
+datadisk_part2_fstype: "ext4"
+datadisk_part2_mount: "/part2"

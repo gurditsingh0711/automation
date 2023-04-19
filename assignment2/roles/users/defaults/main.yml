@@ -1,0 +1,13 @@
+---
+# defaults file for users
+
+users:
+  - username: user1000
+    groups:
+      - cloudadmins
+      - wheel
+  - username: user2000
+    groups:
+      - cloudadmins
+      - wheel
+    ssh_key_file: "{{ ssh_key_file | default('~/.ssh/id_rsa') }}"

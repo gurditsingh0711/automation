@@ -1,0 +1,31 @@
+---
+- name: Install Apache web server
+  become: true
+  package:
+    name: httpd
+    state: present
+
+- name: Create index.html files
+  template:
+    src: templates/vm.html.j2
+    dest: "/tmp/{{ inventory_hostname }}.html"
+  with_items: "{{ ansible_play_hosts }}"
+
+- name: Copy index.html files to web servers
+  copy:
+    src: "/tmp/{{ inventory_hostname }}.html"
+    dest: "{{ apache_document_root }}/index.html"
+    remote_src: true
+  notify:
+    - Restart Apache
+
+- name: Set permissions on index.html files
+  file:
+    path: "{{ apache_document_root }}/index.html"
+    mode: "0444"
+
+- name: Ensure Apache service is running
+  service:
+    name: httpd
+    state: started
+    enabled: true

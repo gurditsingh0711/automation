@@ -1,0 +1,54 @@
+---
+- name: Create partitions on the data disk
+  parted:
+    device: "{{ datadisk_device }}"
+    number: "{{ item.number }}"
+    state: present
+    part_start: "{{ item.start }}"
+    part_end: "{{ item.end }}"
+  with_items:
+    - { number: 1, start: "1MiB", end: "{{ datadisk_part1_size }}" }
+    - { number: 2, start: "{{ datadisk_part1_size }}", end: "{{ datadisk_part2_size }}" }
+  register: parted_result
+
+- name: Create XFS filesystem on {{ datadisk_device }}1
+  become: true
+  filesystem:
+    fstype: "{{ datadisk_part1_fstype }}"
+    dev: "{{ datadisk_device }}1"
+
+- name: Create EXT4 filesystem on {{ datadisk_device }}2
+  become: true
+  filesystem:
+    fstype: "{{ datadisk_part2_fstype }}"
+    dev: "{{ datadisk_device }}2"
+
+- name: Create mount points
+  become: true
+  file:
+    path: "{{ item.path }}"
+    state: directory
+  with_items:
+    - { path: "{{ datadisk_part1_mount }}" }
+    - { path: "{{ datadisk_part2_mount }}" }
+
+- name: Mount data disk partitions
+  become: true
+  mount:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    fstype: "{{ item.fstype }}"
+    state: mounted
+  with_items:
+    - { path: "{{ datadisk_part1_mount }}", src: "{{ datadisk_device }}1", fstype: "{{ datadisk_part1_fstype }}" }
+    - { path: "{{ datadisk_part2_mount }}", src: "{{ datadisk_device }}2", fstype: "{{ datadisk_part2_fstype }}" }
+
+- name: Add entries to /etc/fstab
+  become: true
+  lineinfile:
+    dest: /etc/fstab
+    line: "{{ item.line }}"
+  with_items:
+    - { line: "{{ datadisk_device }}1 {{ datadisk_part1_mount }} {{ datadisk_part1_fstype }} defaults 0 0" }
+    - { line: "{{ datadisk_device }}2 {{ datadisk_part2_mount }} {{ datadisk_part2_fstype }} defaults 0 0" }
+

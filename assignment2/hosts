@@ -1,0 +1,24 @@
+[linux]
+vm-1-dnslabel ansible_host=20.124.17.44 ansible_user=adminuser
+vm-2-dnslabel ansible_host=20.124.20.165 ansible_user=adminuser
+
+[windows]
+20.124.20.247
+
+[os:children]
+linux
+windows
+
+[linux:vars]
+ansible_connection=ssh
+
+
+[windows:vars]
+ansible_user=adminuser
+ansible_password=Gurditsingh@8647
+ansible_connection=winrm
+ansible_port=5985
+ansible_winrm_transport=ntlm
+ansible_winrm_scheme=http
+ansible_winrm_server_cert_validation=ignore
+ansible_become=false

@@ -1,0 +1,30 @@
+---
+# tasks file for users
+
+- name: Add cloudadmins group
+  group:
+    name: cloudadmins
+
+- name: Create user accounts
+  user:
+    name: '{{ item.username }}'
+    groups: '{{ item.groups }}'
+    shell: /bin/bash
+    createhome: yes
+  with_items: '{{ users }}'
+
+- name: Generate SSH keys for users
+  user:
+    name: '{{ item.username }}'
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_comment: '{{ item.username }}'
+  with_items: '{{ users }}'
+
+- name: Add SSH keys to authorized keys
+  authorized_key:
+    user: '{{ item.username }}'
+    state: present
+    key: '{{ lookup("file", "~/.ssh/id_rsa.pub") }}'
+  with_items: '{{ users }}'
+

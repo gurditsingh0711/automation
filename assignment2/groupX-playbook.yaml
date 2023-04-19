@@ -1,0 +1,9 @@
+---
+- name: Configure groupX nodes
+  hosts: linux
+  become: true
+  roles:
+    - datadisk
+    - system_profile
+    - users
+    - webserver
